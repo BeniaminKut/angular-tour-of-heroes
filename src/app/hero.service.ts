@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class HeroService {
-  private heroesUrl = 'api/heroes';  // URL to web api
+  private heroesUrl = 'http://localhost:8080/heroes';  // URL to web api
   // getHeroes(): Observable<Hero[]> {
   //   // TODO: send the message _after_ fetching the heroes
   //   this.messageService.add('HeroService: fetched heroes');
@@ -48,7 +48,7 @@ export class HeroService {
     );
   }
   /** POST: add a new hero to the server */
-  addHero(hero: Hero): Observable<Hero> {
+  addHero(hero: Hero): Observable<any> {
     return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
       tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
       catchError(this.handleError<Hero>('addHero'))
